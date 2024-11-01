@@ -1,0 +1,19 @@
+Survey Questionnaire rest api - resources and methods
+
+1. Survey Rest Api :
+   a. Retrieve all surveys
+     GET/surveys
+   b. Retrieve Specific Survey
+     GET/surveys/{surveyId}
+
+2. Survey Questions Rest Api"
+   a. Retrieve Survey questions
+        GET/SURVEYS/{surveyId}/questions/{questionId}
+   b. Retrieve specific Survey Questions
+        GET/surveys/{surveyId}/questions/{questionId}
+   c. Add Survey Question
+        POST/surveys/{surveyId}/questions
+   d. Delete survey question
+        DELETE/surveys/{surveyId}/questions/{questionId}
+   e. Update Survey Question
+        PUT/surveys/{surveyId}/questions/{questionId}
