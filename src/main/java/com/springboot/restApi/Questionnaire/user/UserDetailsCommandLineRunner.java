@@ -14,8 +14,13 @@ public class UserDetailsCommandLineRunner implements CommandLineRunner {
 
    private Logger logger = LoggerFactory.getLogger(getClass());
 
-   @Autowired
+
    private UserDetailsRepository repository;
+
+    public UserDetailsCommandLineRunner(UserDetailsRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public void run(String... args) throws Exception {
         repository.save(new UserDetails("Ankit","Admin"));
