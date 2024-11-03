@@ -12,6 +12,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Base64;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SurveyResourceIT {
 
@@ -67,6 +69,7 @@ public class SurveyResourceIT {
             """;
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Content-Type","application/json");
+        httpHeaders.add("Authorization","Basic"+performBasicAuthEncoding("ankit","dummy"));
 
         HttpEntity<String> httpEntity = new HttpEntity<String>(requestBody,httpHeaders);
         ResponseEntity<String> responseEntity = testRestTemplate.exchange(genericQuestionUrl, HttpMethod.POST,httpEntity,String.class);
@@ -78,5 +81,14 @@ public class SurveyResourceIT {
 
         // to delete
         testRestTemplate.delete(locationHeader);
+    }
+
+    String performBasicAuthEncoding (String user,String password){
+        String combined = user + ":" + password;
+        //Base64 Encoding --> return in bytes
+        // convert bytes to String
+
+        byte[] encodedBytes = Base64.getEncoder().encode(combined.getBytes());
+        return new String(encodedBytes);
     }
 }
